@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="JJ Realty Group - Find your dream home with expert property management services.">
+    <meta name="keywords" content="Real Estate, Property Management, Dream Home, JJ Realty Group">
+    <meta name="author" content="Jordal">
+    <title>JJ Realty Group | By Jordal</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+    <header class="header">
+        <a href="index.html" class="logo">JJ Realty Group.</a> <!-- Updated to point to the home page -->
+
+        <!-- Menu Toggle for mobile view -->
+        <div class="menu-toggle">
+            <i class='bx bx-menu'></i>
+        </div>
+
+        <nav class="navbar">
+            <a href="index.html" style="--i:1" class="active">Home</a> <!-- Updated to point to the home page -->
+            <a href="buy-rent.html" style="--i:2">Buy/Rent</a>
+            <a href="review.html" style="--i:3">Review</a> <!-- Assuming this page exists -->
+            <a href="featured.html" style="--i:4">Featured</a> <!-- Assuming this page exists -->
+            <a href="contact.html" style="--i:5">Contact</a> <!-- Assuming this page exists -->
+        </nav>
+
+        <div class="social-media">
+            <a href="https://twitter.com" style="--i:1" aria-label="Twitter" target="_blank"><i class='bx bxl-twitter'></i></a>
+            <a href="https://facebook.com" style="--i:2" aria-label="Facebook" target="_blank"><i class='bx bxl-facebook'></i></a>
+            <a href="https://instagram.com" style="--i:3" aria-label="Instagram" target="_blank"><i class='bx bxl-instagram-alt'></i></a>
+        </div>
+    </header>
+
+    <section class="home">
+        <div class="home-content">
+            <h1>Property Management.</h1>
+            <h3>Find Your Dream Home Now!</h3>
+            <p>At JJ Realty Group, we specialize in finding you the perfect home and managing properties with care. Explore our curated listings and let us help you find your dream home with ease and confidence.</p>
+            <a href="buy-rent.html" class="btn">Explore Properties</a> <!-- Updated to point to buy/rent page -->
+        </div>
+
+        <div class="rhombus2"></div>
+    </section>
+
+    <!-- Add footer with improved design -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <a href="index.html" class="footer-logo-link">JJ Realty Group</a>
+            </div>
+            <div class="footer-links">
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="terms-of-service.html">Terms of Service</a>
+            </div>
+            <div class="footer-address">
+                <p>Pattaya, Thailand</p>
+                <p>Email: <a href="mailto:jjrealtygroup4@gmail.com">jjrealtygroup4@gmail.com</a></p>
+                <p>Phone: +66 82-124-1474</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 JJ Realty Group. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navbar = document.querySelector('.navbar');
+        
+            menuToggle.addEventListener('click', function () {
+                navbar.classList.toggle('active');
+            });
+        });
+    </script>
+        
+</body>
+</html>

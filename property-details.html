@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Property Details - JJ Realty Group">
+    <meta name="keywords" content="Real Estate, Property Details, JJ Realty Group">
+    <meta name="author" content="Jordal">
+    <title>Property Details | JJ Realty Group</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        /* Image Slider Styles */
+        .image-slider {
+            position: relative;
+            max-width: 100%;
+            margin: auto;
+            overflow: hidden;
+            border: 1px solid #ddd; /* Optional: Add a border to the slider */
+        }
+
+        .slider {
+            position: relative;
+            width: 100%;
+            height: 400px; /* Adjust the height based on your needs */
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            box-sizing: border-box;
+        }
+
+        .slide img {
+            width: 100%;
+            height: auto;
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 3px;
+            user-select: none;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .next {
+            right: 0;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <a href="index.html" class="logo">JJ Realty Group.</a>
+        <div class="menu-toggle">
+            <i class='bx bx-menu'></i>
+        </div>
+        <nav class="navbar">
+            <a href="index.html" style="--i:1">Home</a>
+            <a href="buy-rent.html" style="--i:2">Buy/Rent</a>
+            <a href="review.html" style="--i:3">Review</a>
+            <a href="featured.html" style="--i:4">Featured</a>
+            <a href="contact.html" style="--i:5">Contact</a>
+        </nav>
+        
+        <div class="social-media">
+            <a href="https://twitter.com" style="--i:1" aria-label="Twitter" target="_blank"><i class='bx bxl-twitter'></i></a>
+            <a href="https://facebook.com" style="--i:2" aria-label="Facebook" target="_blank"><i class='bx bxl-facebook'></i></a>
+            <a href="https://instagram.com" style="--i:3" aria-label="Instagram" target="_blank"><i class='bx bxl-instagram-alt'></i></a>
+        </div>
+    </header>
+
+    <section class="property-details">
+        <div class="container">
+            <!-- Image Slider Section -->
+            <div class="image-slider">
+                <div class="slider">
+                    <div class="slides" id="slider-images">
+                        <!-- Images will be injected here by JavaScript -->
+                    </div>
+                    <button class="prev">&#10094;</button>
+                    <button class="next">&#10095;</button>
+                </div>
+            </div>
+
+            <!-- Property Details Section -->
+            <div class="property-info">
+                <h2 id="property-title">Property Title</h2>
+                <p id="property-location"><i class='bx bx-location-plus'></i> Location: </p>
+                <p id="property-price"><i class='bx bx-money'></i> Price: </p>
+                <p id="property-description"><i class='bx bx-description'></i> Description: </p>
+                <a href="buy-rent.html" class="btn">Back to Listings</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Function to get URL parameters
+            function getQueryParam(param) {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(param);
+            }
+
+            const propertyId = getQueryParam('id');
+
+            // Updated property details with the new image
+            const propertyDetails = {
+                1: {
+                    title: '2 Bed 2 Bath Condo',
+                    location: 'Pratumnak',
+                    price: '฿8,900,000',
+                    description: 'Discover the perfect blend of luxury and convenience in this beautiful condo located in the heart of Pratumnak, Pattaya.',
+                    images: ['images/siamoceanview.jpg', 'images/house1b.jpg']
+                },
+                2: {
+                    title: '2 Bed 2 Bath Condo',
+                    location: 'Pratumnak',
+                    price: '฿8,900,000',
+                    description: 'Discover this beautifully furnished 146 sqm condo on the second floor, offering an exquisite view over the swimming pool. Located in a tranquil soi near the golf course on Prathumnak Hill, this property is just a short walk to the beach, restaurants, and pubs.',
+                    images: ['images/house2a.jpg', 'images/house2b.jpg']
+                },
+                3: {
+                    title: 'Luxury Apartment',
+                    location: 'Pratumank',
+                    price: '฿8,000,000',
+                    description: 'An elegant apartment with premium finishes and a prime location.',
+                    images: ['images/house3a.jpg', 'images/house3b.jpg']
+                }
+            };
+
+            const property = propertyDetails[propertyId];
+            if (property) {
+                document.getElementById('property-title').innerText = property.title;
+                document.getElementById('property-location').innerHTML = `<i class='bx bx-location-plus'></i> Location: ${property.location}`;
+                document.getElementById('property-price').innerHTML = `<i class='bx bx-money'></i> Price: ${property.price}`;
+                document.getElementById('property-description').innerHTML = `<i class='bx bx-description'></i> Description: ${property.description}`;
+                
+                const sliderImages = document.getElementById('slider-images');
+                sliderImages.innerHTML = property.images.map(img => `<div class="slide"><img src="${img}" alt="${property.title}"></div>`).join('');
+            } else {
+                document.querySelector('.property-details').innerHTML = `<p>Property not found.</p>`;
+            }
+
+            // Slider Functionality
+            const prevButton = document.querySelector('.prev');
+            const nextButton = document.querySelector('.next');
+            const slides = document.querySelector('.slides');
+            const slideCount = document.querySelectorAll('.slide').length;
+            let index = 0;
+
+            function showSlide(newIndex) {
+                if (newIndex >= slideCount) {
+                    index = 0;
+                } else if (newIndex < 0) {
+                    index = slideCount - 1;
+                } else {
+                    index = newIndex;
+                }
+                slides.style.transform = `translateX(-${index * 100}%)`;
+            }
+
+            prevButton.addEventListener('click', () => showSlide(index - 1));
+            nextButton.addEventListener('click', () => showSlide(index + 1));
+
+            // Optional: Automatic slide transition
+            setInterval(() => showSlide(index + 1), 5000); // Change slides every 5 seconds
+        });
+    </script>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <a href="index.html" class="footer-logo-link">JJ Realty Group</a>
+            </div>
+            <div class="footer-links">
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="terms-of-service.html">Terms of Service</a>
+            </div>
+            <div class="footer-address">
+                <p>Pattaya, Thailand</p>
+                <p>Email: <a href="mailto:jjrealtygroup4@gmail.com">jjrealtygroup4@gmail.com</a></p>
+                <p>Phone: +66 82-124-1474</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 JJ Realty Group. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

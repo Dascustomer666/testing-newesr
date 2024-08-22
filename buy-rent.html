@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="JJ Realty Group - Buy and Rent properties with ease.">
+    <meta name="keywords" content="Real Estate, Buy Properties, Rent Properties, JJ Realty Group">
+    <meta name="author" content="Jordal">
+    <title>JJ Realty Group | Buy/Rent</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <header class="header">
+        <a href="index.html" class="logo">JJ Realty Group.</a>
+        <div class="menu-toggle">
+            <i class='bx bx-menu'></i>
+        </div>
+        <nav class="navbar">
+            <a href="index.html" style="--i:1">Home</a>
+            <a href="buy-rent.html" style="--i:2" class="active">Buy/Rent</a>
+            <a href="review.html" style="--i:3">Review</a>
+            <a href="featured.html" style="--i:4">Featured</a>
+            <a href="contact.html" style="--i:5">Contact</a>
+        </nav>
+        <div class="social-media">
+            <a href="https://twitter.com" style="--i:1" aria-label="Twitter" target="_blank"><i class='bx bxl-twitter'></i></a>
+            <a href="https://facebook.com" style="--i:2" aria-label="Facebook" target="_blank"><i class='bx bxl-facebook'></i></a>
+            <a href="https://instagram.com" style="--i:3" aria-label="Instagram" target="_blank"><i class='bx bxl-instagram-alt'></i></a>
+        </div>
+    </header>
+
+    <section class="filter">
+        <h2>Filter Properties</h2>
+        <form id="filter-form">
+            <div class="filter-grid">
+                <div class="form-group">
+                    <label for="min-price">Minimum Price (฿):</label>
+                    <input type="number" id="min-price" name="min-price" placeholder="e.g., 1000000">
+                </div>
+                <div class="form-group">
+                    <label for="max-price">Maximum Price (฿):</label>
+                    <input type="number" id="max-price" name="max-price" placeholder="e.g., 5000000">
+                </div>
+                <div class="form-group">
+                    <label for="property-type">Property Type:</label>
+                    <select id="property-type" name="property-type">
+                        <option value="">Select Type</option>
+                        <option value="house">House</option>
+                        <option value="apartment">Apartment</option>
+                        <option value="condo">Condo</option>
+                        <option value="townhouse">Townhouse</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="location">Location:</label>
+                    <select id="location" name="location">
+                        <option value="">Select Location</option>
+                        <option value="pratumank">Pratumank</option>
+                        <option value="jomtien">Jomtien</option>
+                        <option value="north-pattaya">North Pattaya</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="buy-rent">Buy or Rent:</label>
+                    <select id="buy-rent" name="buy-rent">
+                        <option value="">Any</option>
+                        <option value="buy">Buy</option>
+                        <option value="rent">Rent</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="ownership-type">Ownership Type:</label>
+                    <select id="ownership-type" name="ownership-type">
+                        <option value="">Select Type</option>
+                        <option value="foreign">Foreign</option>
+                        <option value="thai">Thai</option>
+                        <option value="company">Company</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn">Apply Filters</button>
+        </form>
+    </section>
+
+    <section class="property-listings" id="property-listings">
+        <div class="property-heading">
+            <h2>Available Properties</h2>
+        </div>
+        <div class="property-list">
+            <div class="property-item" data-price="8900000" data-type="condo" data-location="pratumank" data-status="buy/rent" data-ownership="foreign">
+                <div class="tag">For Sale/Rent</div>
+                <img src="siamoceanview8.9.jpg" alt="Siam Ocean View">
+                <div class="property-info">
+                    <h3>Siam Ocean View</h3>
+                    <p><i class='bx bx-location-plus'></i> Location: Pratumank</p>
+                    <p><i class='bx bx-money'></i> Price: ฿8,900,000</p>
+                    <p><i class='bx bx-user'></i> Ownership: Foreign</p>
+                    <a href="property-details.html?id=1" class="btn view-details" data-id="1">View Details</a>
+                </div>
+            </div>
+            <div class="property-item" data-price="8900000" data-type="condo" data-location="pratumnak" data-status="buy" data-ownership="company">
+                <div class="tag">For Sale</div>
+                <img src="vn28.9.jpg" alt="VN Residence 2">
+                <div class="property-info">
+                    <h3>VN Residence 2</h3>
+                    <p><i class='bx bx-location-plus'></i> Location: Pratumnak</p>
+                    <p><i class='bx bx-money'></i> Price: ฿8,900,000</p>
+                    <p><i class='bx bx-user'></i> Ownership: Company</p>
+                    <a href="property-details.html?id=2" class="btn view-details" data-id="2">View Details</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="property-details" id="property-details">
+        <!-- This section will be dynamically populated with JavaScript when a property is clicked -->
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentPath = window.location.pathname;
+            const navLinks = document.querySelectorAll('.navbar a');
+    
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPath) {
+                    link.classList.add('active');
+                }
+            });
+    
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navbar = document.querySelector('.navbar');
+    
+            menuToggle.addEventListener('click', () => {
+                navbar.classList.toggle('active');
+            });
+    
+            // Handle form submission and filtering
+            document.getElementById('filter-form').addEventListener('submit', (event) => {
+                event.preventDefault();
+    
+                // Get filter values
+                const minPrice = parseInt(document.getElementById('min-price').value) || 0;
+                const maxPrice = parseInt(document.getElementById('max-price').value) || Infinity;
+                const propertyType = document.getElementById('property-type').value;
+                const location = document.getElementById('location').value;
+                const buyRent = document.getElementById('buy-rent').value;
+                const ownershipType = document.getElementById('ownership-type').value;
+    
+                // Filter properties
+                document.querySelectorAll('.property-item').forEach(item => {
+                    const price = parseInt(item.getAttribute('data-price'));
+                    const type = item.getAttribute('data-type');
+                    const loc = item.getAttribute('data-location');
+                    const status = item.getAttribute('data-status');
+                    const ownership = item.getAttribute('data-ownership');
+    
+                    // Check if property matches the filter criteria
+                    if (
+                        price >= minPrice &&
+                        price <= maxPrice &&
+                        (propertyType === '' || type === propertyType) &&
+                        (location === '' || loc === location) &&
+                        (buyRent === '' || status.includes(buyRent)) &&
+                        (ownershipType === '' || ownership === ownershipType)
+                    ) {
+                        item.style.display = 'block'; // Show item
+                    } else {
+                        item.style.display = 'none'; // Hide item
+                    }
+                });
+    
+                // Scroll to property listings section
+                document.getElementById('property-listings').scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <a href="index.html" class="footer-logo-link">JJ Realty Group</a>
+            </div>
+            <div class="footer-links">
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="terms-of-service.html">Terms of Service</a>
+            </div>
+            <div class="footer-address">
+                <p>Pattaya, Thailand</p>
+                <p>Email: <a href="mailto:jjrealtygroup4@gmail.com">jjrealtygroup4@gmail.com</a></p>
+                <p>Phone: +66 82-124-1474</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 JJ Realty Group. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
